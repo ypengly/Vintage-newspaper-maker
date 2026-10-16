@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vintage Newspaper Maker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IM+Fell+English&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Special+Elite&family=UnifrakturCook:wght@700&family=Bokor&family=Hanuman:wght@400;700&family=Battambang:wght@400;700&family=Koulen&family=Moul&family=Moulpali&family=Noto+Serif+Khmer:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">★ Vintage Newspaper Maker ★</div>
+  <nav><button data-go="home">Templates</button><button data-go="projects">My Projects</button></nav>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home" class="view">
+    <div class="hero"><h1>Print Your Own History</h1>
+      <p>Pick one of 10 vintage layouts, type your story, add a photo, and download a print-ready newspaper. No sign-up, no server.</p></div>
+    <div id="gal" class="grid"></div>
+  </section>
+
+  <!-- EDITOR -->
+  <section id="editor" class="view">
+    <div class="bar">
+      <input id="pname" aria-label="Project name" maxlength="60">
+      <button id="bSave">Save</button><button id="bUndo">Undo</button><button id="bRedo">Redo</button>
+      <button id="bDown">Download</button><button id="bPrint">Print</button>
+    </div>
+    <div class="ed">
+      <form id="panel" onsubmit="return false"></form>
+      <div id="stage"><div id="wrap"><div id="prev"></div></div></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="view">
+    <div class="bar"><h2>My Projects</h2>
+      <button id="bImport">Import project file</button>
+      <input id="impFile" type="file" accept=".json,application/json" hidden></div>
+    <p class="note">Projects are stored in this browser (localStorage, roughly 5 MB total). Clearing browser data or using another browser/PC will lose them, and big photos fill the space quickly. Use <b>Export</b> to back up each project as a file and <b>Import</b> to restore it.</p>
+    <div id="plist" class="grid"></div>
+  </section>
+</main>
+
+<dialog id="dlg">
+  <form method="dialog" id="dform">
+    <h3>Download Newspaper</h3>
+    <label>File name <input id="fname" value="My_Newspaper"></label>
+    <label>Format <select id="ffmt"><option value="pdf">PDF (print-ready)</option><option value="png">PNG</option><option value="jpg">JPG</option></select></label>
+    <label>Resolution <select id="fscale"><option value="1">Standard (1×)</option><option value="2" selected>High (2×)</option><option value="3">Very high (3×)</option></select></label>
+    <label id="qrow">JPG quality <input id="fq" type="range" min="40" max="100" value="92"></label>
+    <p class="note">Page size and orientation are set in the editor panel.</p>
+    <div class="row"><button value="cancel">Cancel</button><button id="fgo" value="go">Download</button></div>
+  </form>
+</dialog>
+
+<div id="toast" role="status"></div>
+<div id="printRoot"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
